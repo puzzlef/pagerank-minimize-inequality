@@ -1,7 +1,8 @@
 const fs   = require('fs');
+const os   = require('os');
 const path = require('path');
 
-const RFILEN = /^(\S+)(?:_(loop|loopall))?$/;
+const RFILEN = /^(\S+?)(?:_(loop|loopall))?$/;
 const RGINIC = /^gini_coefficient: (\S+)$/m;
 const RLOREN = /^lorenz_curve:$/m;
 const RVALUE = /^- (\S+)/m;
@@ -61,8 +62,10 @@ function readYaml(pth) {
 function readYamls() {
   var a = new Map();
   var files = fs.readdirSync('out');
-  for (var f of files)
-    a.set(path.basename(f), readYaml(`out/${f}`));
+  for (var f of files) {
+    var name = path.basename(f, path.extname(f));
+    a.set(name, readYaml(`out/${f}`));
+  }
   return a;
 }
 
@@ -73,20 +76,17 @@ function groupGiniCoefficient(yamls) {
     var [, graph, variant] = RFILEN.exec(k);
     variant = variant || 'default';
     if (!a.has(graph)) a.set(graph, {graph});
-    a.set(graph)[variant] = v.gini_coefficient;
+    a.get(graph)[variant] = v.gini_coefficient;
   }
   return [...a.values()];
 }
 
-function groupLorenzCurve(yamls, variantSel) {
+function groupLorenzCurve(yamls) {
   var a = [];
   for (var [k, v] of yamls) {
-    var [, graph, variant] = RFILEN.exec(k);
-    variant = variant || 'default';
-    if (variant!==variantSel) continue;
     for (var i=0; i<v.lorenz_curve.length; i++) {
       a[i] = a[i] || {};
-      a[i][graph] = v.lorenz_curve[i];
+      a[i][k] = v.lorenz_curve[i];
     }
   }
   return a;
@@ -95,9 +95,7 @@ function groupLorenzCurve(yamls, variantSel) {
 
 function main() {
   var yamls = readYamls();
-  writeCsv('out/gini_coefficient.csv', groupGiniCoefficient(yamls));
-  writeCsv('out/lorenz_curve-default.csv', groupLorenzCurve(yamls, 'default'));
-  writeCsv('out/lorenz_curve-loop.csv',    groupLorenzCurve(yamls, 'loop'));
-  writeCsv('out/lorenz_curve-loopall.csv', groupLorenzCurve(yamls, 'loopall'));
+  writeCsv('gini_coefficient.csv', groupGiniCoefficient(yamls));
+  writeCsv('lorenz_curve.csv', groupLorenzCurve(yamls));
 }
 main();

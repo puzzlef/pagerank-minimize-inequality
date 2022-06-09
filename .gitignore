@@ -4,6 +4,12 @@
 .project
 .classpath
 
+# Data
+*.csv
+
+
+## -------
+
 
 # Prerequisites
 *.d

@@ -1,3 +1,10 @@
+## VS Code
+## -------
+.vscode/
+.project
+.classpath
+
+
 # Prerequisites
 *.d
 

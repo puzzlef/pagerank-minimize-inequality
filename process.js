@@ -119,8 +119,10 @@ function groupGiniCoefficient(yamls) {
 function groupLorenzCurve(yamls) {
   var a = [];
   for (var [k, v] of yamls) {
-    for (var i=0; i<v.lorenz_curve.length; i++) {
-      a[i] = a[i] || {};
+    var N = v.lorenz_curve.length;
+    for (var i=0; i<N; i++) {
+      var ideal = (i+1)/N;
+      a[i] = a[i] || {ideal};
       a[i][k] = v.lorenz_curve[i];
     }
   }

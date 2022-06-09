@@ -6,6 +6,32 @@ const RFILEN = /^(\S+?)(?:_(loop|loopall))?$/;
 const RGINIC = /^gini_coefficient: (\S+)$/m;
 const RLOREN = /^lorenz_curve:$/m;
 const RVALUE = /^- (\S+)/m;
+const GRAPHS = [
+  'web-Stanford',
+  'web-BerkStan',
+  'web-Google',
+  'web-NotreDame',
+  'indochina-2004',
+  'arabic-2005',
+  'uk-2005',
+  'it-2004',
+  'amazon-2008',
+  'soc-Slashdot0811',
+  'soc-Slashdot0902',
+  'soc-Epinions1',
+  'soc-LiveJournal1',
+  'wiki-Talk',
+  'coAuthorsDBLP',
+  'coAuthorsCiteseer',
+  'coPapersCiteseer',
+  'coPapersDBLP',
+  'cit-Patents',
+  'italy_osm',
+  'great-britain_osm',
+  'germany_osm',
+  'asia_osm',
+  'Linux_call_graph',
+];
 
 
 
@@ -37,6 +63,15 @@ function writeCsv(pth, rows) {
 // MAIN
 // ----
 
+function orderGraphs(a, b) {
+  var fa = path.basename(a, path.extname(a));
+  var fb = path.basename(b, path.extname(b));
+  var ga = RFILEN.exec(fa)[1];
+  var gb = RFILEN.exec(fb)[1];
+  return GRAPHS.indexOf(ga) - GRAPHS.indexOf(gb);
+}
+
+
 function readYamlLine(ln, data) {
   if (RGINIC.test(ln)) {
     var [, gini_coefficient] = RGINIC.exec(ln);
@@ -61,7 +96,7 @@ function readYaml(pth) {
 
 function readYamls() {
   var a = new Map();
-  var files = fs.readdirSync('out');
+  var files = fs.readdirSync('out').sort(orderGraphs);
   for (var f of files) {
     var name = path.basename(f, path.extname(f));
     a.set(name, readYaml(`out/${f}`));

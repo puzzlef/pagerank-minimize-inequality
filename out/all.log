@@ -1,0 +1,623 @@
+# find-gini-coeff web-Stanford
+Loading graph /home/subhajit/out/web-Stanford.mtx ...
+order: 281903 size: 2312497 [directed] {}
+order: 281903 size: 2312497 [directed] {} (transposeWithDegree)
+[11.761 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/web-Stanford.mtx ...
+order: 281903 size: 2312497 {}
+order: 281903 size: 2312669 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/web-Stanford_loop.mtx ...
+
+Loading graph /home/subhajit/out/web-Stanford_loop.mtx ...
+order: 281903 size: 2312669 [directed] {}
+order: 281903 size: 2312669 [directed] {} (transposeWithDegree)
+[11.712 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/web-Stanford.mtx ...
+order: 281903 size: 2312497 {}
+order: 281903 size: 2594400 {} (selfLoopVertices)
+Writing to /home/subhajit/out/web-Stanford_loopall.mtx ...
+
+Loading graph /home/subhajit/out/web-Stanford_loopall.mtx ...
+order: 281903 size: 2594400 [directed] {}
+order: 281903 size: 2594400 [directed] {} (transposeWithDegree)
+[10.477 ms] nvgraphPagerank
+
+# find-gini-coeff web-BerkStan
+Loading graph /home/subhajit/out/web-BerkStan.mtx ...
+order: 685230 size: 7600595 [directed] {}
+order: 685230 size: 7600595 [directed] {} (transposeWithDegree)
+[16.513 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/web-BerkStan.mtx ...
+order: 685230 size: 7600595 {}
+order: 685230 size: 7605339 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/web-BerkStan_loop.mtx ...
+
+Loading graph /home/subhajit/out/web-BerkStan_loop.mtx ...
+order: 685230 size: 7605339 [directed] {}
+order: 685230 size: 7605339 [directed] {} (transposeWithDegree)
+[16.638 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/web-BerkStan.mtx ...
+order: 685230 size: 7600595 {}
+order: 685230 size: 8285825 {} (selfLoopVertices)
+Writing to /home/subhajit/out/web-BerkStan_loopall.mtx ...
+
+Loading graph /home/subhajit/out/web-BerkStan_loopall.mtx ...
+order: 685230 size: 8285825 [directed] {}
+order: 685230 size: 8285825 [directed] {} (transposeWithDegree)
+[14.482 ms] nvgraphPagerank
+
+# find-gini-coeff web-Google
+Loading graph /home/subhajit/out/web-Google.mtx ...
+order: 916428 size: 5105039 [directed] {}
+order: 916428 size: 5105039 [directed] {} (transposeWithDegree)
+[21.718 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/web-Google.mtx ...
+order: 916428 size: 5105039 {}
+order: 916428 size: 5282013 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/web-Google_loop.mtx ...
+
+Loading graph /home/subhajit/out/web-Google_loop.mtx ...
+order: 916428 size: 5282013 [directed] {}
+order: 916428 size: 5282013 [directed] {} (transposeWithDegree)
+[21.933 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/web-Google.mtx ...
+order: 916428 size: 5105039 {}
+order: 916428 size: 6021467 {} (selfLoopVertices)
+Writing to /home/subhajit/out/web-Google_loopall.mtx ...
+
+Loading graph /home/subhajit/out/web-Google_loopall.mtx ...
+order: 916428 size: 6021467 [directed] {}
+order: 916428 size: 6021467 [directed] {} (transposeWithDegree)
+[17.954 ms] nvgraphPagerank
+
+# find-gini-coeff web-NotreDame
+Loading graph /home/subhajit/out/web-NotreDame.mtx ...
+order: 325729 size: 1497134 [directed] {}
+order: 325729 size: 1497134 [directed] {} (transposeWithDegree)
+[9.188 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/web-NotreDame.mtx ...
+order: 325729 size: 1497134 {}
+order: 325729 size: 1684922 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/web-NotreDame_loop.mtx ...
+
+Loading graph /home/subhajit/out/web-NotreDame_loop.mtx ...
+order: 325729 size: 1684922 [directed] {}
+order: 325729 size: 1684922 [directed] {} (transposeWithDegree)
+[9.678 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/web-NotreDame.mtx ...
+order: 325729 size: 1497134 {}
+order: 325729 size: 1795408 {} (selfLoopVertices)
+Writing to /home/subhajit/out/web-NotreDame_loopall.mtx ...
+
+Loading graph /home/subhajit/out/web-NotreDame_loopall.mtx ...
+order: 325729 size: 1795408 [directed] {}
+order: 325729 size: 1795408 [directed] {} (transposeWithDegree)
+[8.154 ms] nvgraphPagerank
+
+# find-gini-coeff soc-Slashdot0811
+Loading graph /home/subhajit/out/soc-Slashdot0811.mtx ...
+order: 77360 size: 905468 [directed] {}
+order: 77360 size: 905468 [directed] {} (transposeWithDegree)
+[7.306 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/soc-Slashdot0811.mtx ...
+order: 77360 size: 905468 {}
+order: 77360 size: 905512 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/soc-Slashdot0811_loop.mtx ...
+
+Loading graph /home/subhajit/out/soc-Slashdot0811_loop.mtx ...
+order: 77360 size: 905512 [directed] {}
+order: 77360 size: 905512 [directed] {} (transposeWithDegree)
+[7.421 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/soc-Slashdot0811.mtx ...
+order: 77360 size: 905468 {}
+order: 77360 size: 905521 {} (selfLoopVertices)
+Writing to /home/subhajit/out/soc-Slashdot0811_loopall.mtx ...
+
+Loading graph /home/subhajit/out/soc-Slashdot0811_loopall.mtx ...
+order: 77360 size: 905521 [directed] {}
+order: 77360 size: 905521 [directed] {} (transposeWithDegree)
+[6.938 ms] nvgraphPagerank
+
+# find-gini-coeff soc-Slashdot0902
+Loading graph /home/subhajit/out/soc-Slashdot0902.mtx ...
+order: 82168 size: 948464 [directed] {}
+order: 82168 size: 948464 [directed] {} (transposeWithDegree)
+[6.930 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/soc-Slashdot0902.mtx ...
+order: 82168 size: 948464 {}
+order: 82168 size: 952191 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/soc-Slashdot0902_loop.mtx ...
+
+Loading graph /home/subhajit/out/soc-Slashdot0902_loop.mtx ...
+order: 82168 size: 952191 [directed] {}
+order: 82168 size: 952191 [directed] {} (transposeWithDegree)
+[7.655 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/soc-Slashdot0902.mtx ...
+order: 82168 size: 948464 {}
+order: 82168 size: 952329 {} (selfLoopVertices)
+Writing to /home/subhajit/out/soc-Slashdot0902_loopall.mtx ...
+
+Loading graph /home/subhajit/out/soc-Slashdot0902_loopall.mtx ...
+order: 82168 size: 952329 [directed] {}
+order: 82168 size: 952329 [directed] {} (transposeWithDegree)
+[8.141 ms] nvgraphPagerank
+
+# find-gini-coeff soc-Epinions1
+Loading graph /home/subhajit/out/soc-Epinions1.mtx ...
+order: 75888 size: 508837 [directed] {}
+order: 75888 size: 508837 [directed] {} (transposeWithDegree)
+[7.016 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/soc-Epinions1.mtx ...
+order: 75888 size: 508837 {}
+order: 75888 size: 524384 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/soc-Epinions1_loop.mtx ...
+
+Loading graph /home/subhajit/out/soc-Epinions1_loop.mtx ...
+order: 75888 size: 524384 [directed] {}
+order: 75888 size: 524384 [directed] {} (transposeWithDegree)
+[7.378 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/soc-Epinions1.mtx ...
+order: 75888 size: 508837 {}
+order: 75888 size: 584725 {} (selfLoopVertices)
+Writing to /home/subhajit/out/soc-Epinions1_loopall.mtx ...
+
+Loading graph /home/subhajit/out/soc-Epinions1_loopall.mtx ...
+order: 75888 size: 584725 [directed] {}
+order: 75888 size: 584725 [directed] {} (transposeWithDegree)
+[7.061 ms] nvgraphPagerank
+
+# find-gini-coeff coAuthorsDBLP
+Loading graph /home/subhajit/out/coAuthorsDBLP.mtx ...
+order: 299067 size: 1955352 [directed] {}
+order: 299067 size: 1955352 [directed] {} (transposeWithDegree)
+[7.773 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/coAuthorsDBLP.mtx ...
+order: 299067 size: 1955352 {}
+order: 299067 size: 1955352 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/coAuthorsDBLP_loop.mtx ...
+
+Loading graph /home/subhajit/out/coAuthorsDBLP_loop.mtx ...
+order: 299067 size: 1955352 [directed] {}
+order: 299067 size: 1955352 [directed] {} (transposeWithDegree)
+[8.071 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/coAuthorsDBLP.mtx ...
+order: 299067 size: 1955352 {}
+order: 299067 size: 2254419 {} (selfLoopVertices)
+Writing to /home/subhajit/out/coAuthorsDBLP_loopall.mtx ...
+
+Loading graph /home/subhajit/out/coAuthorsDBLP_loopall.mtx ...
+order: 299067 size: 2254419 [directed] {}
+order: 299067 size: 2254419 [directed] {} (transposeWithDegree)
+[7.798 ms] nvgraphPagerank
+
+# find-gini-coeff coAuthorsCiteseer
+Loading graph /home/subhajit/out/coAuthorsCiteseer.mtx ...
+order: 227320 size: 1628268 [directed] {}
+order: 227320 size: 1628268 [directed] {} (transposeWithDegree)
+[7.352 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/coAuthorsCiteseer.mtx ...
+order: 227320 size: 1628268 {}
+order: 227320 size: 1628268 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/coAuthorsCiteseer_loop.mtx ...
+
+Loading graph /home/subhajit/out/coAuthorsCiteseer_loop.mtx ...
+order: 227320 size: 1628268 [directed] {}
+order: 227320 size: 1628268 [directed] {} (transposeWithDegree)
+[7.322 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/coAuthorsCiteseer.mtx ...
+order: 227320 size: 1628268 {}
+order: 227320 size: 1855588 {} (selfLoopVertices)
+Writing to /home/subhajit/out/coAuthorsCiteseer_loopall.mtx ...
+
+Loading graph /home/subhajit/out/coAuthorsCiteseer_loopall.mtx ...
+order: 227320 size: 1855588 [directed] {}
+order: 227320 size: 1855588 [directed] {} (transposeWithDegree)
+[7.238 ms] nvgraphPagerank
+
+# find-gini-coeff soc-LiveJournal1
+Loading graph /home/subhajit/out/soc-LiveJournal1.mtx ...
+order: 4847571 size: 68993773 [directed] {}
+order: 4847571 size: 68993773 [directed] {} (transposeWithDegree)
+[168.900 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/soc-LiveJournal1.mtx ...
+order: 4847571 size: 68993773 {}
+order: 4847571 size: 69532892 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/soc-LiveJournal1_loop.mtx ...
+
+Loading graph /home/subhajit/out/soc-LiveJournal1_loop.mtx ...
+order: 4847571 size: 69532892 [directed] {}
+order: 4847571 size: 69532892 [directed] {} (transposeWithDegree)
+[167.927 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/soc-LiveJournal1.mtx ...
+order: 4847571 size: 68993773 {}
+order: 4847571 size: 73322962 {} (selfLoopVertices)
+Writing to /home/subhajit/out/soc-LiveJournal1_loopall.mtx ...
+
+Loading graph /home/subhajit/out/soc-LiveJournal1_loopall.mtx ...
+order: 4847571 size: 73322962 [directed] {}
+order: 4847571 size: 73322962 [directed] {} (transposeWithDegree)
+[169.933 ms] nvgraphPagerank
+
+# find-gini-coeff coPapersCiteseer
+Loading graph /home/subhajit/out/coPapersCiteseer.mtx ...
+order: 434102 size: 32073440 [directed] {}
+order: 434102 size: 32073440 [directed] {} (transposeWithDegree)
+[26.714 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/coPapersCiteseer.mtx ...
+order: 434102 size: 32073440 {}
+order: 434102 size: 32073440 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/coPapersCiteseer_loop.mtx ...
+
+Loading graph /home/subhajit/out/coPapersCiteseer_loop.mtx ...
+order: 434102 size: 32073440 [directed] {}
+order: 434102 size: 32073440 [directed] {} (transposeWithDegree)
+[26.648 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/coPapersCiteseer.mtx ...
+order: 434102 size: 32073440 {}
+order: 434102 size: 32507542 {} (selfLoopVertices)
+Writing to /home/subhajit/out/coPapersCiteseer_loopall.mtx ...
+
+Loading graph /home/subhajit/out/coPapersCiteseer_loopall.mtx ...
+order: 434102 size: 32507542 [directed] {}
+order: 434102 size: 32507542 [directed] {} (transposeWithDegree)
+[26.426 ms] nvgraphPagerank
+
+# find-gini-coeff coPapersDBLP
+Loading graph /home/subhajit/out/coPapersDBLP.mtx ...
+order: 540486 size: 30491458 [directed] {}
+order: 540486 size: 30491458 [directed] {} (transposeWithDegree)
+[25.254 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/coPapersDBLP.mtx ...
+order: 540486 size: 30491458 {}
+order: 540486 size: 30491458 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/coPapersDBLP_loop.mtx ...
+
+Loading graph /home/subhajit/out/coPapersDBLP_loop.mtx ...
+order: 540486 size: 30491458 [directed] {}
+order: 540486 size: 30491458 [directed] {} (transposeWithDegree)
+[25.340 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/coPapersDBLP.mtx ...
+order: 540486 size: 30491458 {}
+order: 540486 size: 31031944 {} (selfLoopVertices)
+Writing to /home/subhajit/out/coPapersDBLP_loopall.mtx ...
+
+Loading graph /home/subhajit/out/coPapersDBLP_loopall.mtx ...
+order: 540486 size: 31031944 [directed] {}
+order: 540486 size: 31031944 [directed] {} (transposeWithDegree)
+[25.786 ms] nvgraphPagerank
+
+# find-gini-coeff indochina-2004
+Loading graph /home/subhajit/out/indochina-2004.mtx ...
+order: 7414866 size: 194109311 [directed] {}
+order: 7414866 size: 194109311 [directed] {} (transposeWithDegree)
+[195.505 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/indochina-2004.mtx ...
+order: 7414866 size: 194109311 {}
+order: 7414866 size: 195418438 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/indochina-2004_loop.mtx ...
+
+Loading graph /home/subhajit/out/indochina-2004_loop.mtx ...
+order: 7414866 size: 195418438 [directed] {}
+order: 7414866 size: 195418438 [directed] {} (transposeWithDegree)
+[190.617 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/indochina-2004.mtx ...
+order: 7414866 size: 194109311 {}
+order: 7414866 size: 199021693 {} (selfLoopVertices)
+Writing to /home/subhajit/out/indochina-2004_loopall.mtx ...
+
+Loading graph /home/subhajit/out/indochina-2004_loopall.mtx ...
+order: 7414866 size: 199021693 [directed] {}
+order: 7414866 size: 199021693 [directed] {} (transposeWithDegree)
+[164.603 ms] nvgraphPagerank
+
+# find-gini-coeff italy_osm
+Loading graph /home/subhajit/out/italy_osm.mtx ...
+order: 6686493 size: 14027956 [directed] {}
+order: 6686493 size: 14027956 [directed] {} (transposeWithDegree)
+[62.769 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/italy_osm.mtx ...
+order: 6686493 size: 14027956 {}
+order: 6686493 size: 14027956 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/italy_osm_loop.mtx ...
+
+Loading graph /home/subhajit/out/italy_osm_loop.mtx ...
+order: 6686493 size: 14027956 [directed] {}
+order: 6686493 size: 14027956 [directed] {} (transposeWithDegree)
+[62.952 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/italy_osm.mtx ...
+order: 6686493 size: 14027956 {}
+order: 6686493 size: 20714449 {} (selfLoopVertices)
+Writing to /home/subhajit/out/italy_osm_loopall.mtx ...
+
+Loading graph /home/subhajit/out/italy_osm_loopall.mtx ...
+order: 6686493 size: 20714449 [directed] {}
+order: 6686493 size: 20714449 [directed] {} (transposeWithDegree)
+[38.173 ms] nvgraphPagerank
+
+# find-gini-coeff great-britain_osm
+Loading graph /home/subhajit/out/great-britain_osm.mtx ...
+order: 7733822 size: 16313034 [directed] {}
+order: 7733822 size: 16313034 [directed] {} (transposeWithDegree)
+[77.004 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/great-britain_osm.mtx ...
+order: 7733822 size: 16313034 {}
+order: 7733822 size: 16313034 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/great-britain_osm_loop.mtx ...
+
+Loading graph /home/subhajit/out/great-britain_osm_loop.mtx ...
+order: 7733822 size: 16313034 [directed] {}
+order: 7733822 size: 16313034 [directed] {} (transposeWithDegree)
+[77.232 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/great-britain_osm.mtx ...
+order: 7733822 size: 16313034 {}
+order: 7733822 size: 24046856 {} (selfLoopVertices)
+Writing to /home/subhajit/out/great-britain_osm_loopall.mtx ...
+
+Loading graph /home/subhajit/out/great-britain_osm_loopall.mtx ...
+order: 7733822 size: 24046856 [directed] {}
+order: 7733822 size: 24046856 [directed] {} (transposeWithDegree)
+[46.037 ms] nvgraphPagerank
+
+# find-gini-coeff germany_osm
+Loading graph /home/subhajit/out/germany_osm.mtx ...
+order: 11548845 size: 24738362 [directed] {}
+order: 11548845 size: 24738362 [directed] {} (transposeWithDegree)
+[114.234 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/germany_osm.mtx ...
+order: 11548845 size: 24738362 {}
+order: 11548845 size: 24738362 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/germany_osm_loop.mtx ...
+
+Loading graph /home/subhajit/out/germany_osm_loop.mtx ...
+order: 11548845 size: 24738362 [directed] {}
+order: 11548845 size: 24738362 [directed] {} (transposeWithDegree)
+[114.345 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/germany_osm.mtx ...
+order: 11548845 size: 24738362 {}
+order: 11548845 size: 36287207 {} (selfLoopVertices)
+Writing to /home/subhajit/out/germany_osm_loopall.mtx ...
+
+Loading graph /home/subhajit/out/germany_osm_loopall.mtx ...
+order: 11548845 size: 36287207 [directed] {}
+order: 11548845 size: 36287207 [directed] {} (transposeWithDegree)
+[70.108 ms] nvgraphPagerank
+
+# find-gini-coeff asia_osm
+Loading graph /home/subhajit/out/asia_osm.mtx ...
+order: 11950757 size: 25423206 [directed] {}
+order: 11950757 size: 25423206 [directed] {} (transposeWithDegree)
+[109.283 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/asia_osm.mtx ...
+order: 11950757 size: 25423206 {}
+order: 11950757 size: 25423206 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/asia_osm_loop.mtx ...
+
+Loading graph /home/subhajit/out/asia_osm_loop.mtx ...
+order: 11950757 size: 25423206 [directed] {}
+order: 11950757 size: 25423206 [directed] {} (transposeWithDegree)
+[109.151 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/asia_osm.mtx ...
+order: 11950757 size: 25423206 {}
+order: 11950757 size: 37373963 {} (selfLoopVertices)
+Writing to /home/subhajit/out/asia_osm_loopall.mtx ...
+
+Loading graph /home/subhajit/out/asia_osm_loopall.mtx ...
+order: 11950757 size: 37373963 [directed] {}
+order: 11950757 size: 37373963 [directed] {} (transposeWithDegree)
+[66.306 ms] nvgraphPagerank
+
+# find-gini-coeff arabic-2005
+Loading graph /home/subhajit/out/arabic-2005.mtx ...
+order: 22744080 size: 639999458 [directed] {}
+order: 22744080 size: 639999458 [directed] {} (transposeWithDegree)
+[694.354 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/arabic-2005.mtx ...
+order: 22744080 size: 639999458 {}
+order: 22744080 size: 643300543 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/arabic-2005_loop.mtx ...
+
+Loading graph /home/subhajit/out/arabic-2005_loop.mtx ...
+order: 22744080 size: 643300543 [directed] {}
+order: 22744080 size: 643300543 [directed] {} (transposeWithDegree)
+[697.635 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/arabic-2005.mtx ...
+order: 22744080 size: 639999458 {}
+order: 22744080 size: 653897749 {} (selfLoopVertices)
+Writing to /home/subhajit/out/arabic-2005_loopall.mtx ...
+
+Loading graph /home/subhajit/out/arabic-2005_loopall.mtx ...
+order: 22744080 size: 653897749 [directed] {}
+order: 22744080 size: 653897749 [directed] {} (transposeWithDegree)
+[530.484 ms] nvgraphPagerank
+
+# find-gini-coeff uk-2005
+Loading graph /home/subhajit/out/uk-2005.mtx ...
+order: 39459925 size: 936364282 [directed] {}
+order: 39459925 size: 936364282 [directed] {} (transposeWithDegree)
+[956.826 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/uk-2005.mtx ...
+order: 39459925 size: 936364282 {}
+order: 39459925 size: 940772268 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/uk-2005_loop.mtx ...
+
+Loading graph /home/subhajit/out/uk-2005_loop.mtx ...
+order: 39459925 size: 940772268 [directed] {}
+order: 39459925 size: 940772268 [directed] {} (transposeWithDegree)
+[960.834 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/uk-2005.mtx ...
+order: 39459925 size: 936364282 {}
+order: 39459925 size: 960805003 {} (selfLoopVertices)
+Writing to /home/subhajit/out/uk-2005_loopall.mtx ...
+
+Loading graph /home/subhajit/out/uk-2005_loopall.mtx ...
+order: 39459925 size: 960805003 [directed] {}
+order: 39459925 size: 960805003 [directed] {} (transposeWithDegree)
+[905.464 ms] nvgraphPagerank
+
+# find-gini-coeff it-2004
+Loading graph /home/subhajit/out/it-2004.mtx ...
+order: 41291594 size: 1150725436 [directed] {}
+order: 41291594 size: 1150725436 [directed] {} (transposeWithDegree)
+[1207.006 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/it-2004.mtx ...
+order: 41291594 size: 1150725436 {}
+order: 41291594 size: 1155994305 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/it-2004_loop.mtx ...
+
+Loading graph /home/subhajit/out/it-2004_loop.mtx ...
+order: 41291594 size: 1155994305 [directed] {}
+order: 41291594 size: 1155994305 [directed] {} (transposeWithDegree)
+[1154.954 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/it-2004.mtx ...
+order: 41291594 size: 1150725436 {}
+order: 41291594 size: 1177010503 {} (selfLoopVertices)
+Writing to /home/subhajit/out/it-2004_loopall.mtx ...
+
+Loading graph /home/subhajit/out/it-2004_loopall.mtx ...
+order: 41291594 size: 1177010503 [directed] {}
+order: 41291594 size: 1177010503 [directed] {} (transposeWithDegree)
+[1125.064 ms] nvgraphPagerank
+
+# find-gini-coeff wiki-Talk
+Loading graph /home/subhajit/out/wiki-Talk.mtx ...
+order: 2394385 size: 5021410 [directed] {}
+order: 2394385 size: 5021410 [directed] {} (transposeWithDegree)
+[22.969 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/wiki-Talk.mtx ...
+order: 2394385 size: 5021410 {}
+order: 2394385 size: 7268193 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/wiki-Talk_loop.mtx ...
+
+Loading graph /home/subhajit/out/wiki-Talk_loop.mtx ...
+order: 2394385 size: 7268193 [directed] {}
+order: 2394385 size: 7268193 [directed] {} (transposeWithDegree)
+[25.217 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/wiki-Talk.mtx ...
+order: 2394385 size: 5021410 {}
+order: 2394385 size: 7415795 {} (selfLoopVertices)
+Writing to /home/subhajit/out/wiki-Talk_loopall.mtx ...
+
+Loading graph /home/subhajit/out/wiki-Talk_loopall.mtx ...
+order: 2394385 size: 7415795 [directed] {}
+order: 2394385 size: 7415795 [directed] {} (transposeWithDegree)
+[13.826 ms] nvgraphPagerank
+
+# find-gini-coeff cit-Patents
+Loading graph /home/subhajit/out/cit-Patents.mtx ...
+order: 3774768 size: 16518948 [directed] {}
+order: 3774768 size: 16518948 [directed] {} (transposeWithDegree)
+[17.923 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/cit-Patents.mtx ...
+order: 3774768 size: 16518948 {}
+order: 3774768 size: 18204371 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/cit-Patents_loop.mtx ...
+
+Loading graph /home/subhajit/out/cit-Patents_loop.mtx ...
+order: 3774768 size: 18204371 [directed] {}
+order: 3774768 size: 18204371 [directed] {} (transposeWithDegree)
+[15.399 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/cit-Patents.mtx ...
+order: 3774768 size: 16518948 {}
+order: 3774768 size: 20293715 {} (selfLoopVertices)
+Writing to /home/subhajit/out/cit-Patents_loopall.mtx ...
+
+Loading graph /home/subhajit/out/cit-Patents_loopall.mtx ...
+order: 3774768 size: 20293715 [directed] {}
+order: 3774768 size: 20293715 [directed] {} (transposeWithDegree)
+[27.533 ms] nvgraphPagerank
+
+# find-gini-coeff amazon-2008
+Loading graph /home/subhajit/out/amazon-2008.mtx ...
+order: 735323 size: 5158388 [directed] {}
+order: 735323 size: 5158388 [directed] {} (transposeWithDegree)
+[14.306 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/amazon-2008.mtx ...
+order: 735323 size: 5158388 {}
+order: 735323 size: 5246945 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/amazon-2008_loop.mtx ...
+
+Loading graph /home/subhajit/out/amazon-2008_loop.mtx ...
+order: 735323 size: 5246945 [directed] {}
+order: 735323 size: 5246945 [directed] {} (transposeWithDegree)
+[14.622 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/amazon-2008.mtx ...
+order: 735323 size: 5158388 {}
+order: 735323 size: 5893711 {} (selfLoopVertices)
+Writing to /home/subhajit/out/amazon-2008_loopall.mtx ...
+
+Loading graph /home/subhajit/out/amazon-2008_loopall.mtx ...
+order: 735323 size: 5893711 [directed] {}
+order: 735323 size: 5893711 [directed] {} (transposeWithDegree)
+[15.183 ms] nvgraphPagerank
+
+# find-gini-coeff Linux_call_graph
+Loading graph /home/subhajit/out/Linux_call_graph.mtx ...
+order: 324085 size: 1208908 [directed] {}
+order: 324085 size: 1208908 [directed] {} (transposeWithDegree)
+[7.214 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/Linux_call_graph.mtx ...
+order: 324085 size: 1208908 {}
+order: 324085 size: 1288880 {} (selfLoopDeadEnds)
+Writing to /home/subhajit/out/Linux_call_graph_loop.mtx ...
+
+Loading graph /home/subhajit/out/Linux_call_graph_loop.mtx ...
+order: 324085 size: 1288880 [directed] {}
+order: 324085 size: 1288880 [directed] {} (transposeWithDegree)
+[4.942 ms] nvgraphPagerank
+
+Loading graph /home/subhajit/data/Linux_call_graph.mtx ...
+order: 324085 size: 1208908 {}
+order: 324085 size: 1532165 {} (selfLoopVertices)
+Writing to /home/subhajit/out/Linux_call_graph_loopall.mtx ...
+
+Loading graph /home/subhajit/out/Linux_call_graph_loopall.mtx ...
+order: 324085 size: 1532165 [directed] {}
+order: 324085 size: 1532165 [directed] {} (transposeWithDegree)
+[4.078 ms] nvgraphPagerank

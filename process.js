@@ -36,6 +36,19 @@ const GRAPHS = [
 
 
 
+// ARRAY, ITERABLE
+// ---------------
+
+function concat(xs) {
+  var a = [];
+  for (var x of xs)
+    a.push(...x);
+  return a;
+}
+
+
+
+
 // FILE, CSV
 // ---------
 
@@ -117,16 +130,20 @@ function groupGiniCoefficient(yamls) {
 }
 
 function groupLorenzCurve(yamls) {
-  var a = [];
+  var a = new Map();
   for (var [k, v] of yamls) {
-    var N = v.lorenz_curve.length;
+    var [, graph, variant] = RFILEN.exec(k);
+    variant = variant || 'default';
+    var N   = v.lorenz_curve.length;
+    var vs  = a.get(graph) || new Array(N).fill(null).map(_ => ({graph}));
+    if (!a.has(graph)) a.set(graph, vs);
     for (var i=0; i<N; i++) {
       var ideal = (i+1)/N;
-      a[i] = a[i] || {ideal};
-      a[i][k] = v.lorenz_curve[i];
+      vs[i].ideal    = vs[i].ideal || ideal;
+      vs[i][variant] = v.lorenz_curve[i];
     }
   }
-  return a;
+  return concat(a.values());
 }
 
 

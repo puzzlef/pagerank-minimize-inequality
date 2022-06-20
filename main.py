@@ -1,7 +1,7 @@
-# https://www.kaggle.com/wolfram77/puzzlef-pagerank-inequality-minimize-static
+# https://www.kaggle.com/wolfram77/puzzlef-pagerank-inequality-minimize-deterministic
 import os
 from IPython.display import FileLink
-src="pagerank-inequality-minimize-static"
+src="pagerank-inequality-minimize-deterministic"
 inp="/kaggle/input/graphs"
 out="{}.txt".format(src)
 !printf "" > "$out"

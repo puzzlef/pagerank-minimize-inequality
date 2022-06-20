@@ -1,7 +1,7 @@
-# https://www.kaggle.com/wolfram77/puzzlef-pagerank-cuda
+# https://www.kaggle.com/wolfram77/puzzlef-pagerank-inequality-minimize-static
 import os
 from IPython.display import FileLink
-src="pagerank-cuda"
+src="pagerank-inequality-minimize-static"
 inp="/kaggle/input/graphs"
 out="{}.txt".format(src)
 !printf "" > "$out"

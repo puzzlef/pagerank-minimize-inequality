@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-src="pagerank-cuda"
+src="pagerank-inequality-minimize-static"
 out="/home/resources/Documents/subhajit/$src.log"
 ulimit -s unlimited
 printf "" > "$out"

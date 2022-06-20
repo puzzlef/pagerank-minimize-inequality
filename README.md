@@ -1,1 +1,1 @@
-Comparison of heuristics for minimization of inequality in ranks of vertices with static analysis.
+Comparison of deterministic heuristics for minimization of inequality in ranks of vertices.

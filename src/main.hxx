@@ -14,6 +14,7 @@
 #include "components.hxx"
 #include "sort.hxx"
 #include "dynamic.hxx"
+#include "statistics.hxx"
 #include "pagerank.hxx"
 #include "pagerankSeq.hxx"
 #include "pagerankMonolithicSeq.hxx"

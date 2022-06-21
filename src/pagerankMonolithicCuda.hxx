@@ -63,7 +63,7 @@ PagerankResult<T> pagerankMonolithicCuda(const G& x, const H& xt, const vector<T
   return pagerankCuda(xt, ks, 0, ns, pagerankMonolithicCudaLoopU<T, decltype(ns)>, q, o);
 }
 template <class G, class T=float>
-PagerankResult<T> pagerankMonolithicCuda(const G& x, const vector<T> *q=nullptr, PagerankOptions<T> o={}) {
+PagerankResult<T> pagerankMonolithicCudaS(const G& x, const vector<T> *q=nullptr, PagerankOptions<T> o={}) {
   auto xt = transposeWithDegree(x);
   return pagerankMonolithicCuda(x, xt, q, o);
 }
@@ -84,7 +84,7 @@ PagerankResult<T> pagerankMonolithicCudaDynamic(const G& x, const H& xt, const G
 }
 
 template <class G, class T=float>
-PagerankResult<T> pagerankMonolithicCudaDynamic(const G& x, const G& y, const vector<T> *q=nullptr, PagerankOptions<T> o={}) {
+PagerankResult<T> pagerankMonolithicCudaDynamicS(const G& x, const G& y, const vector<T> *q=nullptr, PagerankOptions<T> o={}) {
   auto xt = transposeWithDegree(x);
   auto yt = transposeWithDegree(y);
   return pagerankMonolithicCudaDynamic(x, xt, y, yt, q, o);

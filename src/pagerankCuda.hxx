@@ -42,19 +42,20 @@ void pagerankPartition(const H& xt, vector<int>& ks) {
 // For contribution factors of vertices (unchanging).
 
 template <class T>
-__global__ void pagerankFactorKernelW(T *a, const int *vdata, int i, int n, T p) {
+__global__ void pagerankFactorKernelW(T *a, const T *f, const int *vdata, int i, int n, T p) {
   DEFINE(t, b, B, G);
   for (int v=i+B*b+t; v<i+n; v+=G*B) {
     int d = vdata[v];
-    a[v] = d>0? p/d : 0;
+    T   g =  f? f[v]  : 1;
+    a[v] = d>0? g*p/d : 0;
   }
 }
 
 template <class T>
-void pagerankFactorCuW(T *a, const int *vdata, int i, int n, T p) {
+void pagerankFactorCuW(T *a, const T* f, const int *vdata, int i, int n, T p) {
   int B = BLOCK_DIM_M<T>();
   int G = min(ceilDiv(n, B), GRID_DIM_M<T>());
-  pagerankFactorKernelW<<<G, B>>>(a, vdata, i, n, p);
+  pagerankFactorKernelW<<<G, B>>>(a, f, vdata, i, n, p);
 }
 
 
@@ -237,9 +238,10 @@ PagerankResult<T> pagerankCuda(const H& xt, const J& ks, int i, const M& ns, FL 
   int R1 = R * sizeof(T);
   vector<T> a(N), r(N), qc;
   if (q) qc = compressContainer(xt, *q, ks);
+  T *g = o.factors? (*o.factors).data() : nullptr;
 
   T *e,  *r0;
-  T *eD, *r0D, *fD, *rD, *cD, *aD;
+  T *eD, *r0D, *fD, *rD, *cD, *aD, *gD = nullptr;
   int *vfromD, *efromD, *vdataD;
   // TRY( cudaProfilerStart() );
   TRY( cudaSetDeviceFlags(cudaDeviceMapHost) );
@@ -257,13 +259,15 @@ PagerankResult<T> pagerankCuda(const H& xt, const J& ks, int i, const M& ns, FL 
   TRY( cudaMemcpy(vfromD, vfrom.data(), VFROM1, cudaMemcpyHostToDevice) );
   TRY( cudaMemcpy(efromD, efrom.data(), EFROM1, cudaMemcpyHostToDevice) );
   TRY( cudaMemcpy(vdataD, vdata.data(), VDATA1, cudaMemcpyHostToDevice) );
+  if (g) TRY( cudaMalloc(&gD, N1) );
+  if (g) TRY( cudaMemcpy(gD, g, N1, cudaMemcpyHostToDevice) );
 
   float t = measureDurationMarked([&](auto mark) {
     if (q) copyValuesW(r, qc);   // copy old ranks (qc), if given
     else fillValueU(r, T(1)/N);
     TRY( cudaMemcpy(aD, r.data(), N1, cudaMemcpyHostToDevice) );
     TRY( cudaMemcpy(rD, r.data(), N1, cudaMemcpyHostToDevice) );
-    mark([&] { pagerankFactorCuW(fD, vdataD, 0, N, p); multiplyCuW(cD, aD, fD, N); });                       // calculate factors (fD) and contributions (cD)
+    mark([&] { pagerankFactorCuW(fD, gD, vdataD, 0, N, p); multiplyCuW(cD, aD, fD, N); });          // calculate factors (fD) and contributions (cD)
     mark([&] { l = fl(e, r0, eD, r0D, aD, rD, cD, fD, vfromD, efromD, vdataD, i, ns, N, p, E, L, EF); });  // calculate ranks of vertices
   }, o.repeat);
   TRY( cudaMemcpy(a.data(), aD, N1, cudaMemcpyDeviceToHost) );

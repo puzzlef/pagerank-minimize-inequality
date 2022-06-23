@@ -831,6 +831,39 @@ inline void multiplyValuesW(vector<TA>& a, const vector<TX>& x, const vector<TY>
 
 
 
+// MULTIPLY-VALUES-POSITIVE
+// ------------------------
+
+template <class TX, class TY, class TA>
+void multiplyValuesPositive(const TX *x, const TY *y, TA *a, size_t N) {
+  for (size_t i=0; i<N; i++)
+    a[i] = max(x[i] * y[i], 0);
+}
+template <class TX, class TY, class TA>
+inline void multiplyValuesPositive(const vector<TX>& x, const vector<TY>& y, vector<TA>& a) {
+  multiplyValuesPositive(x.data(), y.data(), a.data(), x.size());
+}
+template <class TX, class TY, class TA>
+inline void multiplyValuesPositive(const vector<TX>& x, const vector<TY>& y, vector<TA>& a, size_t i, size_t N) {
+  multiplyValuesPositive(x.data()+i, y.data()+i, a.data()+i, N);
+}
+
+template <class TA, class TX, class TY>
+inline void multiplyValuesPositiveW(TA *a, const TX *x, const TY *y, size_t N) {
+  multiplyValuesPositive(x, y, a, N);
+}
+template <class TX, class TY, class TA>
+inline void multiplyValuesPositiveW(vector<TA>& a, const vector<TX>& x, const vector<TY>& y) {
+  multiplyValuesPositive(x, y, a);
+}
+template <class TX, class TY, class TA>
+inline void multiplyValuesPositiveW(vector<TA>& a, const vector<TX>& x, const vector<TY>& y, size_t i, size_t N) {
+  multiplyValuesPositive(x, y, a, i, N);
+}
+
+
+
+
 // MULTIPLY-VALUE
 // --------------
 

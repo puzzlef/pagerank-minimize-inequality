@@ -18,10 +18,11 @@ using std::swap;
 // For contribution factors of vertices (unchanging).
 
 template <class T>
-void pagerankFactorW(vector<T>& a, const vector<int>& vdata, int i, int n, T p) {
-  for (int u=i; u<i+n; u++) {
+void pagerankFactorW(vector<T>& a, const vector<T>& vfact, const vector<int>& vdata, int N, T p) {
+  for (int u=0; u<N; u++) {
     int d = vdata[u];
-    a[u] = d>0? p/d : 0;
+    T   f = vfact[u];
+    a[u] = d>0? p*f/d : -p*f/N;
   }
 }
 
@@ -33,10 +34,10 @@ void pagerankFactorW(vector<T>& a, const vector<int>& vdata, int i, int n, T p) 
 // For teleport contribution from vertices (inc. dead ends).
 
 template <class T>
-T pagerankTeleport(const vector<T>& r, const vector<int>& vdata, int N, T p) {
+T pagerankTeleport(const vector<T>& r, const vector<T>& f, int N, T p) {
   T a = (1-p)/N;
   for (int u=0; u<N; u++)
-    if (vdata[u] == 0) a += p*r[u]/N;
+    if (f[u]<0) a -= f[u]*r[u];
   return a;
 }
 
@@ -86,14 +87,16 @@ PagerankResult<T> pagerankSeq(const H& xt, const J& ks, int i, const M& ns, FL f
   auto vfrom = sourceOffsetsAs(xt, ks, int());
   auto efrom = destinationIndicesAs(xt, ks, int());
   auto vdata = vertexData(xt, ks);
-  vector<T> a(N), r(N), c(N), f(N), qc;
+  vector<T> a(N), r(N), c(N), f(N), qc, vfact;
   if (q) qc = compressContainer(xt, *q, ks);
+  if (o.factors) vfact = compressContainer(xt, *o.factors, ks);
+  else { vfact = vector<T>(N); fillValueU(vfact, T(1)); }
   float t = measureDurationMarked([&](auto mark) {
     if (q) copyValuesW(r, qc);    // copy old ranks (qc), if given
     else fillValueU(r, T(1)/N);
     copyValuesW(a, r);
-    mark([&] { pagerankFactorW(f, vdata, 0, N, p); multiplyValuesW(c, a, f, 0, N); });  // calculate factors (f) and contributions (c)
-    mark([&] { l = fl(a, r, c, f, vfrom, efrom, vdata, i, ns, N, p, E, L, EF); });      // calculate ranks of vertices
+    mark([&] { pagerankFactorW(f, vfact, vdata, N, p); multiplyValuesPositiveW(c, a, f, 0, N); });  // calculate factors (f) and contributions (c)
+    mark([&] { l = fl(a, r, c, f, vfrom, efrom, i, ns, N, p, E, L, EF); });                         // calculate ranks of vertices
   }, o.repeat);
   return {decompressContainer(xt, a, ks), l, t};
 }

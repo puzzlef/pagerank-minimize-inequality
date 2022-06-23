@@ -108,7 +108,7 @@ void runExperiment(const G& x, int batch) {
 
 int main(int argc, char **argv) {
   char *file = argv[1];
-  int batch = argc>2? stoi(argv[2]) : 10;
+  int batch = argc>2? stoi(argv[2]) : 1000;
   printf("Loading graph %s ...\n", file);
   auto x  = readMtxOutDiGraph(file); println(x);
   selfLoopW(x, [](auto u) { return true; }); print(x); printf(" (selfLoopAllVertices)\n");

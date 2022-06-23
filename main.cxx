@@ -63,10 +63,10 @@ void runExperiment(const G& x, int batch) {
 
   // Try different heuristics.
   const char *name;
-  name = "edgeInsertBest";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    return edgeInsertBest(y, init);
-  });
+  // name = "edgeInsertBest";
+  // runBatch(x, init, name, batch, [&](auto y, auto r) {
+  //   return edgeInsertBest(y, init);
+  // });
   name = "edgeInsertCxrx";
   runBatch(x, init, name, batch, [&](auto y, auto r) {
     return edgeInsertCxrx(y, r);

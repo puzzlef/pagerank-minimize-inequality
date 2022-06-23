@@ -68,47 +68,41 @@ void runExperiment(const G& x, int batch) {
     return edgeInsertBest(y, init);
   });
   const char *name;
-  name = "edgeInsertLowRank";
+  name = "edgeInsertCxrx";
   runBatch(x, init, name, batch, [&](auto y, auto r) {
-    return edgeInsertLowRank(y, r);
+    return edgeInsertCxrx(y, r);
   });
-  name = "edgeInsertLowContrib";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    return edgeInsertLowContrib(y, r);
-  });
-  name = "edgeInsertLowRankHighReverse";
+  name = "edgeInsertCxSx";
   runBatch(x, init, name, batch, [&](auto y, auto r) {
     auto yt = transpose(y);
-    auto b  = pagerankMonolithicCudaS(yt, init);
-    return edgeInsertLowRankHighReverse(y, r, b.ranks);
+    auto b  = pagerankMonolithicSeq(yt, init);
+    return edgeInsertCxSx(y, r, b.ranks);
   });
-  name = "edgeInsertLowContribHighReverse";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    auto yt = transpose(y);
-    auto b  = pagerankMonolithicCudaS(yt, init);
-    return edgeInsertLowContribHighReverse(y, r, b.ranks);
-  });
-  name = "edgeInsertHighReverse";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    auto yt = transpose(y);
-    auto b  = pagerankMonolithicCudaS(yt, init);
-    return edgeInsertHighReverse(y, r, b.ranks);
-  });
-  name = "edgeInsertHighRevrank";
+  name = "edgeInsertCxSr";
   runBatch(x, init, name, batch, [&](auto y, auto r) {
     vector<T> f(y.order());
     y.forEachVertexKey([&](auto u) { f[u] = 1/r[u]; });
     auto yt = transpose(y);
-    auto b  = pagerankMonolithicCudaS(yt, init, {&f});
-    return edgeInsertHighReverse(y, r, b.ranks);
+    auto b  = pagerankMonolithicSeq(yt, init, {&f});
+    return edgeInsertCxSr(y, r, b.ranks);
   });
-  name = "edgeInsertHighRevcontrib";
+  name = "edgeInsertCRrx";
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
+    return edgeInsertCRrx(y, r);
+  });
+  name = "edgeInsertCRSx";
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
+    auto yt = transpose(y);
+    auto b  = pagerankMonolithicSeq(yt, init);
+    return edgeInsertCRSx(y, r, b.ranks);
+  });
+  name = "edgeInsertCRSr";
   runBatch(x, init, name, batch, [&](auto y, auto r) {
     vector<T> f(y.order());
-    y.forEachVertexKey([&](auto u) { f[u] = (y.degree(u) + 1)/r[u]; });
+    y.forEachVertexKey([&](auto u) { f[u] = 1/r[u]; });
     auto yt = transpose(y);
-    auto b  = pagerankMonolithicCudaS(yt, init, {&f});
-    return edgeInsertHighReverse(y, r, b.ranks);
+    auto b  = pagerankMonolithicSeq(yt, init, {&f});
+    return edgeInsertCRSr(y, r, b.ranks);
   });
 }
 

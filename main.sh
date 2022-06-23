@@ -10,7 +10,7 @@ git clone https://github.com/puzzlef/$src
 cd $src
 
 # Run
-nvcc -std=c++17 -Xcompiler -O3 main.cu
+g++ -std=c++17 -O3 main.cxx
 stdbuf --output=L ./a.out ~/data/web-Stanford.mtx      2>&1 | tee -a "$out"
 stdbuf --output=L ./a.out ~/data/web-BerkStan.mtx      2>&1 | tee -a "$out"
 stdbuf --output=L ./a.out ~/data/web-Google.mtx        2>&1 | tee -a "$out"

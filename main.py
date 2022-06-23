@@ -7,7 +7,6 @@ out="{}.txt".format(src)
 !printf "" > "$out"
 display(FileLink(out))
 !ulimit -s unlimited && echo ""
-!nvidia-smi && echo ""
 
 # Download program
 !rm -rf $src
@@ -15,7 +14,7 @@ display(FileLink(out))
 !echo ""
 
 # Run
-!nvcc -std=c++17 -Xcompiler -DNVGRAPH_DISABLE -O3 $src/main.cu
+!g++ -std=c++17 -O3 main.cxx
 !stdbuf --output=L ./a.out $inp/web-Stanford.mtx      2>&1 | tee -a "$out"
 !stdbuf --output=L ./a.out $inp/web-BerkStan.mtx      2>&1 | tee -a "$out"
 !stdbuf --output=L ./a.out $inp/web-Google.mtx        2>&1 | tee -a "$out"

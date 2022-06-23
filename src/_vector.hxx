@@ -837,7 +837,7 @@ inline void multiplyValuesW(vector<TA>& a, const vector<TX>& x, const vector<TY>
 template <class TX, class TY, class TA>
 void multiplyValuesPositive(const TX *x, const TY *y, TA *a, size_t N) {
   for (size_t i=0; i<N; i++)
-    a[i] = max(x[i] * y[i], 0);
+    a[i] = max(TA(x[i] * y[i]), TA());
 }
 template <class TX, class TY, class TA>
 inline void multiplyValuesPositive(const vector<TX>& x, const vector<TY>& y, vector<TA>& a) {

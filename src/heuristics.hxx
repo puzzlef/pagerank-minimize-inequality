@@ -115,8 +115,8 @@ inline auto vertexHighContribToHighRank(const G& x, const vector<T>& r) {
 // Generate insertion edge from high contrib to low rank.
 template <class G, class T>
 auto edgeInsertCxrx(const G& x, const vector<T>& r) {
-  auto ft = [&](auto v) { return !x.hasEdge(u, v); };
   auto u  = vertexHighContrib(x, r);
+  auto ft = [&](auto v) { return !x.hasEdge(u, v); };
   auto v  = vertexLowRank(x, r, ft);
   return make_pair(u, v);
 }
@@ -124,8 +124,8 @@ auto edgeInsertCxrx(const G& x, const vector<T>& r) {
 // Generate insertion edge from high contrib to high reverse rank.
 template <class G, class T>
 auto edgeInsertCxSx(const G& x, const vector<T>& r, const vector<T>& s) {
-  auto ft = [&](auto v) { return !x.hasEdge(u, v); };
   auto u  = vertexHighContrib(x, r);
+  auto ft = [&](auto v) { return !x.hasEdge(u, v); };
   auto v  = vertexHighRank(x, s, ft);
   return make_pair(u, v);
 }
@@ -139,8 +139,8 @@ inline auto edgeInsertCxSr(const G& x, const vector<T>& r, const vector<T>& s) {
 // Generate insertion edge from high contrib targeting high rank to low rank.
 template <class G, class T>
 auto edgeInsertCRrx(const G& x, const vector<T>& r) {
-  auto ft = [&](auto v) { return !x.hasEdge(u, v); };
   auto u  = vertexHighContribToHighRank(x, r);
+  auto ft = [&](auto v) { return !x.hasEdge(u, v); };
   auto v  = vertexLowRank(x, r, ft);
   return make_pair(u, v);
 }
@@ -148,8 +148,8 @@ auto edgeInsertCRrx(const G& x, const vector<T>& r) {
 // Generate insertion edge from high contrib targeting high rank to high reverse rank.
 template <class G, class T>
 auto edgeInsertCRSx(const G& x, const vector<T>& r, const vector<T>& s) {
-  auto ft = [&](auto v) { return !x.hasEdge(u, v); };
   auto u  = vertexHighContribToHighRank(x, r);
+  auto ft = [&](auto v) { return !x.hasEdge(u, v); };
   auto v  = vertexHighRank(x, s, ft);
   return make_pair(u, v);
 }

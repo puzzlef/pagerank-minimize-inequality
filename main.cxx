@@ -13,14 +13,14 @@ using namespace std;
 template <class G, class T=float>
 auto edgeInsertBest(const G& x, const vector<T> *init=nullptr) {
   using K = typename G::key_type;
-  T min = T(0); K minu = K(), minv = K();
+  T min = T(); K minu = K(), minv = K();
   auto a  = pagerankMonolithicSeq(x, init);
   auto lc = lorenzCurve(a.ranks);
   auto gc = giniCoefficient(lc);
-  auto y  = duplicate(x);
   x.forEachVertexKey([&](auto u) {
     x.forEachVertexKey([&](auto v) {
       if (x.hasEdge(u, v)) return;
+      auto y  = duplicate(x);
       y.addEdge(u, v);
       y.correct();
       auto b  = pagerankMonolithicSeq(y, &a.ranks);
@@ -37,7 +37,7 @@ auto edgeInsertBest(const G& x, const vector<T> *init=nullptr) {
 // Process a batch with given edge adding process.
 template <class G, class T, class F>
 void runBatch(const G& x, const vector<T> *init, const char *name, int batch, F fn) {
-  auto a  = pagerankMonolithicSeq(y, init);
+  auto a  = pagerankMonolithicSeq(x, init);
   auto lc = lorenzCurve(a.ranks);
   auto gc = giniCoefficient(lc);
   printf("[%05d edges; %.10f gini_coef.] %s\n", 0, gc, name);
@@ -67,7 +67,6 @@ void runExperiment(const G& x, int batch) {
   runBatch(x, init, name, batch, [&](auto y, auto r) {
     return edgeInsertBest(y, init);
   });
-  const char *name;
   name = "edgeInsertCxrx";
   runBatch(x, init, name, batch, [&](auto y, auto r) {
     return edgeInsertCxrx(y, r);
@@ -80,8 +79,8 @@ void runExperiment(const G& x, int batch) {
   });
   name = "edgeInsertCxSr";
   runBatch(x, init, name, batch, [&](auto y, auto r) {
-    vector<T> f(y.order());
-    y.forEachVertexKey([&](auto u) { f[u] = 1/r[u]; });
+    vector<T> f(y.span());
+    y.forEachVertexKey([&](auto u) { f[u] = 1 - r[u]; });
     auto yt = transpose(y);
     auto b  = pagerankMonolithicSeq(yt, init, {&f});
     return edgeInsertCxSr(y, r, b.ranks);
@@ -98,8 +97,8 @@ void runExperiment(const G& x, int batch) {
   });
   name = "edgeInsertCRSr";
   runBatch(x, init, name, batch, [&](auto y, auto r) {
-    vector<T> f(y.order());
-    y.forEachVertexKey([&](auto u) { f[u] = 1/r[u]; });
+    vector<T> f(y.span());
+    y.forEachVertexKey([&](auto u) { f[u] = 1 - r[u]; });
     auto yt = transpose(y);
     auto b  = pagerankMonolithicSeq(yt, init, {&f});
     return edgeInsertCRSr(y, r, b.ranks);

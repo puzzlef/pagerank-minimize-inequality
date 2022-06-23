@@ -10,8 +10,3 @@
 #include "_vector.hxx"
 #include "_queue.hxx"
 #include "_bitset.hxx"
-#include "_cuda.hxx"
-
-#ifndef NVGRAPH_DISABLE
-#include "_nvgraph.hxx"
-#endif

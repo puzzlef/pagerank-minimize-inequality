@@ -9,50 +9,6 @@ using std::move;
 
 
 
-// LAUNCH CONFIG
-// -------------
-
-// For pagerank cuda block-per-vertex
-template <class T=float>
-constexpr int BLOCK_DIM_PRCB() noexcept { return 256; }
-template <class T=float>
-constexpr int GRID_DIM_PRCB()  noexcept { return GRID_LIMIT; }
-
-// For pagerank cuda thread-per-vertex
-template <class T=float>
-constexpr int BLOCK_DIM_PRCT() noexcept { return 512; }
-template <class T=float>
-constexpr int GRID_DIM_PRCT()  noexcept { return GRID_LIMIT; }
-template <class T=float>
-constexpr int BLOCK_DIM_PRCT_LOWDENSITY() noexcept { return 512; }
-template <class T=float>
-constexpr int GRID_DIM_PRCT_LOWDENSITY()  noexcept { return 8192; }
-template <class T=float>
-constexpr int BLOCK_DIM_PRCT_HIGHDEGREE() noexcept { return 32; }
-template <class T=float>
-constexpr int GRID_DIM_PRCT_HIGHDEGREE()  noexcept { return 8192; }
-
-
-
-
-// OTHER CONFIG
-// ------------
-
-// For pagerank cuda
-template <class T=float>
-constexpr int SWITCH_DEGREE_PRC() noexcept { return 64; }
-template <class T=float>
-constexpr int SWITCH_LIMIT_PRC()  noexcept { return 32; }
-
-// For levelwise pagerank
-template <class T=float>
-constexpr int MIN_COMPUTE_PR()  noexcept { return 1000000; }  // 10
-template <class T=float>
-constexpr int MIN_COMPUTE_PRC() noexcept { return 1000000; }  // 5000000
-
-
-
-
 // PAGERANK-OPTIONS
 // ----------------
 

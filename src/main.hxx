@@ -19,11 +19,3 @@
 #include "pagerank.hxx"
 #include "pagerankSeq.hxx"
 #include "pagerankMonolithicSeq.hxx"
-#include "pagerankCuda.hxx"
-#include "pagerankMonolithicCuda.hxx"
-
-#ifndef NVGRAPH_DISABLE
-#include "pagerankNvgraph.hxx"
-#else
-#define pagerankNvgraph pagerankCuda
-#endif

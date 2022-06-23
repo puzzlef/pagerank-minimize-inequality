@@ -9,73 +9,93 @@ using namespace std;
 
 
 
-// Process a batch with given edge adding process.
-template <class G, class F>
-void runBatch(const G& x, const char *name, int batch, int step, F fn) {
-  using T = float;
-  vector<T> r, *init = nullptr;
-  auto y = duplicate(x);
-  auto a = pagerankMonolithicCudaS(y, init);
-  r = move(a.ranks);
-  for (int i=0; i<batch;) {
-    for (int j=0; j<step; i++, j++) {
-      // Get edge to add.
-      auto [u, v] = fn(y, r);
-      // Add new edge.
+// Find the best possible edge to insert (that reduces gini coefficient).
+template <class G, class T=float>
+auto edgeInsertBest(const G& x, const vector<T> *init=nullptr) {
+  using K = typename G::key_type;
+  T min = T(0); K minu = K(), minv = K();
+  auto a  = pagerankMonolithicSeq(x, init);
+  auto lc = lorenzCurve(a.ranks);
+  auto gc = giniCoefficient(lc);
+  auto y  = duplicate(x);
+  x.forEachVertexKey([&](auto u) {
+    x.forEachVertexKey([&](auto v) {
+      if (x.hasEdge(u, v)) return;
       y.addEdge(u, v);
       y.correct();
-    }
-    // Find gini coefficient of ranks.
-    auto b  = pagerankMonolithicCudaS(y, init);
-    auto lc = lorenzCurve(b.ranks);
-    auto gc = giniCoefficient(lc);
-    printf("[%05d edges; %.10f gini_coef.] %s\n", i, gc, name);
+      auto b  = pagerankMonolithicSeq(y, &a.ranks);
+      auto ld = lorenzCurve(b.ranks);
+      auto gd = giniCoefficient(ld);
+      if (gd>=gc || (minu && gd>=min)) return;
+      min = gd; minu = u; minv = v;
+    });
+  });
+  return make_pair(minu, minv);
+}
+
+
+// Process a batch with given edge adding process.
+template <class G, class T, class F>
+void runBatch(const G& x, const vector<T> *init, const char *name, int batch, F fn) {
+  auto a  = pagerankMonolithicSeq(y, init);
+  auto lc = lorenzCurve(a.ranks);
+  auto gc = giniCoefficient(lc);
+  printf("[%05d edges; %.10f gini_coef.] %s\n", 0, gc, name);
+  auto y  = duplicate(x);
+  auto r  = a.ranks;
+  for (int i=0; i<batch; i++) {
+    auto [u, v] = fn(y, r);
+    y.addEdge(u, v);
+    y.correct();
+    auto b  = pagerankMonolithicSeq(y, &r);
+    auto ld = lorenzCurve(b.ranks);
+    auto gd = giniCoefficient(ld);
+    printf("[%05d edges; %.10f gini_coef.] %s\n", i+1, gd, name);
     r = move(b.ranks);
   }
 }
 
 
 template <class G>
-void runExperiment(const G& x, int batch, int step) {
-  using T = float;
+void runExperiment(const G& x, int batch) {
+  using T = float; vector<T> *init = nullptr;
   enum NormFunction { L0=0, L1=1, L2=2, Li=3 };
-  vector<T> *init = nullptr;
 
-  // Find original static PageRank.
-  auto a  = pagerankMonolithicCudaS(x, init);
-  auto lc = lorenzCurve(a.ranks);
-  auto gc = giniCoefficient(lc);
-  printf("[%05d edges; %.10f gini_coef.] original\n", 0, gc);
   // Try different heuristics.
   const char *name;
+  name = "edgeInsertBest";
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
+    return edgeInsertBest(y, init);
+  });
+  const char *name;
   name = "edgeInsertLowRank";
-  runBatch(x, name, batch, step, [&](auto y, auto r) {
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
     return edgeInsertLowRank(y, r);
   });
   name = "edgeInsertLowContrib";
-  runBatch(x, name, batch, step, [&](auto y, auto r) {
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
     return edgeInsertLowContrib(y, r);
   });
   name = "edgeInsertLowRankHighReverse";
-  runBatch(x, name, batch, step, [&](auto y, auto r) {
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
     auto yt = transpose(y);
     auto b  = pagerankMonolithicCudaS(yt, init);
     return edgeInsertLowRankHighReverse(y, r, b.ranks);
   });
   name = "edgeInsertLowContribHighReverse";
-  runBatch(x, name, batch, step, [&](auto y, auto r) {
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
     auto yt = transpose(y);
     auto b  = pagerankMonolithicCudaS(yt, init);
     return edgeInsertLowContribHighReverse(y, r, b.ranks);
   });
   name = "edgeInsertHighReverse";
-  runBatch(x, name, batch, step, [&](auto y, auto r) {
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
     auto yt = transpose(y);
     auto b  = pagerankMonolithicCudaS(yt, init);
     return edgeInsertHighReverse(y, r, b.ranks);
   });
   name = "edgeInsertHighRevrank";
-  runBatch(x, name, batch, step, [&](auto y, auto r) {
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
     vector<T> f(y.order());
     y.forEachVertexKey([&](auto u) { f[u] = 1/r[u]; });
     auto yt = transpose(y);
@@ -83,7 +103,7 @@ void runExperiment(const G& x, int batch, int step) {
     return edgeInsertHighReverse(y, r, b.ranks);
   });
   name = "edgeInsertHighRevcontrib";
-  runBatch(x, name, batch, step, [&](auto y, auto r) {
+  runBatch(x, init, name, batch, [&](auto y, auto r) {
     vector<T> f(y.order());
     y.forEachVertexKey([&](auto u) { f[u] = (y.degree(u) + 1)/r[u]; });
     auto yt = transpose(y);
@@ -95,12 +115,11 @@ void runExperiment(const G& x, int batch, int step) {
 
 int main(int argc, char **argv) {
   char *file = argv[1];
-  int batch = argc>2? stoi(argv[2]) : 10000;
-  int step  = argc>3? stoi(argv[3]) : 10;
+  int batch = argc>2? stoi(argv[2]) : 10;
   printf("Loading graph %s ...\n", file);
   auto x  = readMtxOutDiGraph(file); println(x);
   selfLoopW(x, [](auto u) { return true; }); print(x); printf(" (selfLoopAllVertices)\n");
-  runExperiment(x, batch, step);
+  runExperiment(x, batch);
   printf("\n");
   return 0;
 }

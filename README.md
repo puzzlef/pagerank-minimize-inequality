@@ -127,6 +127,8 @@ $ ./main.sh
 <br>
 
 [![](https://i.imgur.com/lKQtZEh.jpg)](https://www.humortimes.com/23794/rich-vs-poor-cartoon-news-report/)
+[![DOI](https://zenodo.org/badge/501525015.svg)](https://zenodo.org/badge/latestdoi/501525015)
+
 
 [Prof. Dip Sankar Banerjee]: https://sites.google.com/site/dipsankarban/
 [Prof. Kishore Kothapalli]: https://cstar.iiit.ac.in/~kkishore/

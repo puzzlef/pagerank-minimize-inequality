@@ -151,7 +151,8 @@ $ ...
 <br>
 <br>
 
-[![](https://i.imgur.com/lytcS7x.jpg)](https://www.youtube.com/watch?v=b6Zjb_t6wxk)
+[![](https://i.imgur.com/lytcS7x.jpg)](https://www.youtube.com/watch?v=b6Zjb_t6wxk)<br>
+[![DOI](https://zenodo.org/badge/505387370.svg)](https://zenodo.org/badge/latestdoi/505387370)
 
 
 [Prof. Dip Sankar Banerjee]: https://sites.google.com/site/dipsankarban/

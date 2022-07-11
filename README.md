@@ -5,7 +5,7 @@ This experiment was for comparing the **Lorenz curve** and **Gini coefficient** 
 2. Find *PageRank* by *self-looping dead-ends* (**loop**).
 3. Find *PageRank* by *self-looping all vertices* (**loopall**).
 
-[Gini coefficient] is a value which represents **income/wealth inequality**
+[Gini coefficient] is a value which represents [income/wealth inequality]
 within a nation or group. It ranges from `0` to `1`, with `0` representing
 *total equality* and `1` representing *total inequality*. It is calculated from
 the [Lorenz curve], which plots *cumulative income/wealth* against *cumulative*
@@ -135,6 +135,7 @@ $ ./main.sh
 [SuiteSparse Matrix Collection]: https://sparse.tamu.edu
 [Gini coefficient]: https://www.youtube.com/watch?v=BwSB__Ugo1s
 [Lorenz curve]: https://www.youtube.com/watch?v=BwSB__Ugo1s
+[income/wealth inequality]: https://mkorostoff.github.io/1-pixel-wealth/
 [PageRank]: https://www.youtube.com/watch?v=ke9g8hB0MEo
 [nvGraph PageRank]: https://docs.nvidia.com/cuda/archive/10.0/nvgraph/index.html#nvgraph-pagerank-example
 [nvgraph.sh]: https://www.npmjs.com/package/nvgraph.sh

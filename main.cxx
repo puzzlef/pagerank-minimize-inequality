@@ -57,7 +57,7 @@ void runExperiment(const G& x, int batch) {
   auto a  = pagerankMonolithicSeq(x, init);
   auto lc = lorenzCurve(a.ranks);
   auto gc = giniCoefficient(lc);
-  printf("[%05d edges; %.10f gini_coef.] %s\n", 0, gc, name);
+  printf("[%05d edges; %.10f gini_coef.] %s\n", 0, gc, "noop");
 
   // Try different heuristics.
   auto y  = duplicate(x);
@@ -65,7 +65,7 @@ void runExperiment(const G& x, int batch) {
 
   for (int n=0; n<batch; n++) {
     vector<string> heuristics;
-    vector<tuple<K, K, K>> results;
+    vector<tuple<K, K, T>> results;
 
     heuristics.push_back("edgeInsertCxrx");
     results.push_back(tryHeuristic(y, r, [&](auto y, auto r) {
@@ -103,13 +103,13 @@ void runExperiment(const G& x, int batch) {
       auto b  = pagerankMonolithicSeq(yt, init, {&f});
       return edgeInsertCRSr(y, r, b.ranks);
     }));
-    T bestGc = T(1); int bestI = 0;
+    T minGc = T(1); int minI = 0;
     for (int i=0; i<heuristics.size(); i++) {
       auto [u, v, gc] = results[i];
-      if (gc < bestGc) { bestGc = gc; bestI = i; }
+      if (gc < minGc) { minGc = gc; minI = i; }
     }
-    string heuristic = heuristics[bestI];
-    auto [u, v, gd]  = results[bestI];
+    string heuristic = heuristics[minI];
+    auto [u, v, gd]  = results[minI];
     printf("[%05d edges; %.10f gini_coef.] %s\n", n+1, gd, heuristic.c_str());
     y.addEdge(u, v);
     y.correct();

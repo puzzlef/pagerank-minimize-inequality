@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-src="pagerank-inequality-minimize-deterministic"
+src="pagerank-inequality-minimize-deterministic-pick-best"
 out="/home/resources/Documents/subhajit/$src.log"
 ulimit -s unlimited
 printf "" > "$out"

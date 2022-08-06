@@ -36,79 +36,90 @@ auto edgeInsertBest(const G& x, const vector<T> *init=nullptr) {
 
 // Process a batch with given edge adding process.
 template <class G, class T, class F>
-void runBatch(const G& x, const vector<T> *init, const char *name, int batch, F fn) {
-  auto a  = pagerankMonolithicSeq(x, init);
+auto tryHeuristic(G& x, const vector<T>& r, F fn) {
+  auto [u, v] = fn(x, r);
+  bool has = x.hasEdge(u, v);
+  x.addEdge(u, v);
+  x.correct();
+  auto a  = pagerankMonolithicSeq(x, &r);
   auto lc = lorenzCurve(a.ranks);
   auto gc = giniCoefficient(lc);
-  printf("[%05d edges; %.10f gini_coef.] %s\n", 0, gc, name);
-  auto y  = duplicate(x);
-  auto r  = a.ranks;
-  for (int i=0; i<batch; i++) {
-    auto [u, v] = fn(y, r);
-    y.addEdge(u, v);
-    y.correct();
-    auto b  = pagerankMonolithicSeq(y, &r);
-    auto ld = lorenzCurve(b.ranks);
-    auto gd = giniCoefficient(ld);
-    printf("[%05d edges; %.10f gini_coef.] %s\n", i+1, gd, name);
-    r = move(b.ranks);
-  }
+  if (!has) { x.removeEdge(u, v); x.correct(); }
+  return make_tuple(u, v, gc);
 }
 
 
 template <class G>
 void runExperiment(const G& x, int batch) {
+  using K = typename G::key_type;
   using T = float; vector<T> *init = nullptr;
   enum NormFunction { L0=0, L1=1, L2=2, Li=3 };
+  auto a  = pagerankMonolithicSeq(x, init);
+  auto lc = lorenzCurve(a.ranks);
+  auto gc = giniCoefficient(lc);
+  printf("[%05d edges; %.10f gini_coef.] %s\n", 0, gc, name);
 
   // Try different heuristics.
-  const char *name;
-  // name = "edgeInsertBest";
-  // runBatch(x, init, name, batch, [&](auto y, auto r) {
-  //   return edgeInsertBest(y, init);
-  // });
-  name = "edgeInsertCxrx";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    return edgeInsertCxrx(y, r);
-  });
-  name = "edgeInsertCxSx";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    auto yt = transpose(y);
-    auto b  = pagerankMonolithicSeq(yt, init);
-    return edgeInsertCxSx(y, r, b.ranks);
-  });
-  name = "edgeInsertCxSr";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    vector<T> f(y.span());
-    y.forEachVertexKey([&](auto u) { f[u] = 1 - r[u]; });
-    auto yt = transpose(y);
-    auto b  = pagerankMonolithicSeq(yt, init, {&f});
-    return edgeInsertCxSr(y, r, b.ranks);
-  });
-  name = "edgeInsertCRrx";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    return edgeInsertCRrx(y, r);
-  });
-  name = "edgeInsertCRSx";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    auto yt = transpose(y);
-    auto b  = pagerankMonolithicSeq(yt, init);
-    return edgeInsertCRSx(y, r, b.ranks);
-  });
-  name = "edgeInsertCRSr";
-  runBatch(x, init, name, batch, [&](auto y, auto r) {
-    vector<T> f(y.span());
-    y.forEachVertexKey([&](auto u) { f[u] = 1 - r[u]; });
-    auto yt = transpose(y);
-    auto b  = pagerankMonolithicSeq(yt, init, {&f});
-    return edgeInsertCRSr(y, r, b.ranks);
-  });
+  auto y  = duplicate(x);
+  auto r  = a.ranks;
+
+  for (int n=0; n<batch; n++) {
+    vector<string> heuristics;
+    vector<tuple<K, K, K>> results;
+
+    heuristics.push_back("edgeInsertCxrx");
+    results.push_back(tryHeuristic(y, r, [&](auto y, auto r) {
+      return edgeInsertCxrx(y, r);
+    }));
+    heuristics.push_back("edgeInsertCxSx");
+    results.push_back(tryHeuristic(y, r, [&](auto y, auto r) {
+      auto yt = transpose(y);
+      auto b  = pagerankMonolithicSeq(yt, init);
+      return edgeInsertCxSx(y, r, b.ranks);
+    }));
+    heuristics.push_back("edgeInsertCxSr");
+    results.push_back(tryHeuristic(y, r, [&](auto y, auto r) {
+      vector<T> f(y.span());
+      y.forEachVertexKey([&](auto u) { f[u] = 1 - r[u]; });
+      auto yt = transpose(y);
+      auto b  = pagerankMonolithicSeq(yt, init, {&f});
+      return edgeInsertCxSr(y, r, b.ranks);
+    }));
+    heuristics.push_back("edgeInsertCRrx");
+    results.push_back(tryHeuristic(y, r, [&](auto y, auto r) {
+      return edgeInsertCRrx(y, r);
+    }));
+    heuristics.push_back("edgeInsertCRSx");
+    results.push_back(tryHeuristic(y, r, [&](auto y, auto r) {
+      auto yt = transpose(y);
+      auto b  = pagerankMonolithicSeq(yt, init);
+      return edgeInsertCRSx(y, r, b.ranks);
+    }));
+    heuristics.push_back("edgeInsertCRSr");
+    results.push_back(tryHeuristic(y, r, [&](auto y, auto r) {
+      vector<T> f(y.span());
+      y.forEachVertexKey([&](auto u) { f[u] = 1 - r[u]; });
+      auto yt = transpose(y);
+      auto b  = pagerankMonolithicSeq(yt, init, {&f});
+      return edgeInsertCRSr(y, r, b.ranks);
+    }));
+    T bestGc = T(1); int bestI = 0;
+    for (int i=0; i<heuristics.size(); i++) {
+      auto [u, v, gc] = results[i];
+      if (gc < bestGc) { bestGc = gc; bestI = i; }
+    }
+    string heuristic = heuristics[bestI];
+    auto [u, v, gd]  = results[bestI];
+    printf("[%05d edges; %.10f gini_coef.] %s\n", n+1, gd, heuristic.c_str());
+    y.addEdge(u, v);
+    y.correct();
+  }
 }
 
 
 int main(int argc, char **argv) {
   char *file = argv[1];
-  int batch = argc>2? stoi(argv[2]) : 1000;
+  int batch = argc>2? stoi(argv[2]) : 10000;
   printf("Loading graph %s ...\n", file);
   auto x  = readMtxOutDiGraph(file); println(x);
   selfLoopW(x, [](auto u) { return true; }); print(x); printf(" (selfLoopAllVertices)\n");

@@ -127,6 +127,7 @@ $ ./main.sh
 <br>
 
 [![](https://i.imgur.com/lKQtZEh.jpg)](https://www.humortimes.com/23794/rich-vs-poor-cartoon-news-report/)
+[![ORG](https://img.shields.io/badge/org-puzzlef-green?logo=Org)](https://puzzlef.github.io)
 [![DOI](https://zenodo.org/badge/501525015.svg)](https://zenodo.org/badge/latestdoi/501525015)
 
 

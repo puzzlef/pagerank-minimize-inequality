@@ -190,7 +190,7 @@ work can include exploring *randomized heuristics* or looking for *better*
 [![](https://i.imgur.com/lytcS7x.jpg)](https://www.youtube.com/watch?v=b6Zjb_t6wxk)<br>
 [![ORG](https://img.shields.io/badge/org-puzzlef-green?logo=Org)](https://puzzlef.github.io)
 [![DOI](https://zenodo.org/badge/505387370.svg)](https://zenodo.org/badge/latestdoi/505387370)
-
+![](https://ga-beacon.deno.dev/G-KD28SG54JQ:hbAybl6nQFOtmVxW4if3xw/github.com/puzzlef/pagerank-minimize-inequality)
 
 [Prof. Dip Sankar Banerjee]: https://sites.google.com/site/dipsankarban/
 [Prof. Kishore Kothapalli]: https://cstar.iiit.ac.in/~kkishore/
